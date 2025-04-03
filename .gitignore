@@ -1,0 +1,61 @@
+# Node dependencies
+/frontend/node_modules
+/.pnp
+.pnp.js
+
+# Build output
+/build
+/dist
+
+# Coverage for tests
+/coverage
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.egg-info/
+*.egg
+
+# Flask
+instance/
+*.pyc
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Alembic / Migrations
+backend/migrations/
+
+
+# SQLite database file
+backend/invoices.db
+
+# Ngrok (optional if you want to ignore downloaded exe)
+ngrok.exe
+
+# PDF & uploads (optional if generated dynamically)
+backend/static/uploads/
+
+# VS Code
+.vscode/

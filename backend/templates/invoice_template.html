@@ -1,0 +1,93 @@
+<!-- templates/invoice_template.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ invoice.invoice_number }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .right-align {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Invoice {{ invoice.invoice_number }}</h1>
+    <p><strong>Date:</strong> {{ invoice.date_created }}</p>
+    <p><strong>Due Date:</strong> {{ invoice.due_date }}</p>
+
+    <h3>Client Details</h3>
+    <p>{{ client.name }}<br>
+        {{ client.email }}<br>
+        {{ client.address }}<br>
+        {{ client.phone }}
+    </p>
+
+    <h3>Items</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>GST (%)</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>12</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="right-align">Subtotal: ₹{{ subtotal }}</p>
+    <p class="right-align">GST (12%): ₹{{ gst }}</p>
+    <p class="right-align">Discount ({{ discount }}%): ₹{{ discount_amount }}</p>
+    <p class="right-align"><strong>Grand Total: ₹{{ grand_total }}</strong></p>
+
+    {% if invoice.upi_id %}
+    <p><strong>UPI ID</strong><br>{{ invoice.upi_id }}</p>
+    {% endif %}
+
+    {% if signature %}
+    <p><strong>Authorized Signature:</strong></p>
+    <img src={{ signature }} alt="Signature" style="width: 200px; height: auto; border: 1px solid #ccc;" />
+    {% endif %}
+</body>
+
+</html>
