@@ -31,6 +31,7 @@
 - Razorpay Python SDK
 - Flask-Mail
 - ngrok
+- Firebase
 
 ### Frontend
 
@@ -181,6 +182,21 @@ RAZORPAY_WEBHOOK_SECRET="WEBHOOK_SECRET"  # Must match the webhook
 ```
 
 Reference link for `MAIL_PASSWORD`: [Sign in with App Passwords](https://support.google.com/accounts/answer/185833?hl=en)
+
+---
+
+## Firebase for Email Auth
+
+Create a Firebase project at https://console.firebase.google.com
+
+Enable Email/Password Authentication under "Authentication > Sign-in method"
+
+Install Firebase SDK:
+'''bash
+npm install firebase
+'''
+
+
 
 ---
 
