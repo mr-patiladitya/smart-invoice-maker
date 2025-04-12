@@ -1,6 +1,7 @@
 // src/components/Step2BankDetails.jsx
 import React from 'react';
-import { Box, Typography, TextField } from '@mui/material';
+import { Box, Typography, TextField, IconButton, InputAdornment } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Step2BankDetails = ({ data, updateData }) => {
   const handleUPIChange = (e) => {
@@ -8,9 +9,9 @@ const Step2BankDetails = ({ data, updateData }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ p: 3, borderRadius: 2, boxShadow: 2 }}>
       <Typography variant="h6" gutterBottom>
-        Add UPI ID
+        Add Your UPI ID
       </Typography>
 
       <TextField
@@ -20,7 +21,19 @@ const Step2BankDetails = ({ data, updateData }) => {
         onChange={handleUPIChange}
         placeholder="example@upi"
         sx={{ my: 2 }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton edge="end" onClick={() => console.log('UPI ID submitted')}>
+                <CheckCircleIcon color="primary" />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       />
+      <Typography variant="body2" color="textSecondary">
+        Please enter your UPI ID to facilitate easy payments.
+      </Typography>
     </Box>
   );
 };
