@@ -8,8 +8,17 @@ const Step2BankDetails = ({ data, updateData }) => {
     updateData({ upi_id: e.target.value });
   };
 
+  const handleSubmit = () => {
+    if (data.upi_id) {
+      console.log('UPI ID submitted:', data.upi_id);
+      // Add your submit logic here
+    } else {
+      alert('Please enter a valid UPI ID.');
+    }
+  };
+
   return (
-    <Box sx={{ p: 3, borderRadius: 2, boxShadow: 2 }}>
+    <Box sx={{ p: 3, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 2, maxWidth: 400, margin: '0 auto' }}>
       <Typography variant="h6" gutterBottom>
         Add Your UPI ID
       </Typography>
@@ -24,7 +33,7 @@ const Step2BankDetails = ({ data, updateData }) => {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton edge="end" onClick={() => console.log('UPI ID submitted')}>
+              <IconButton edge="end" onClick={handleSubmit}>
                 <CheckCircleIcon color="primary" />
               </IconButton>
             </InputAdornment>

@@ -1,6 +1,6 @@
 // src/components/Step3CustomizeShare.jsx
 import React, { useRef } from 'react';
-import { Box, Typography, TextField, Button, Grid } from '@mui/material';
+import { Box, Typography, TextField, Button } from '@mui/material';
 import SignatureCanvas from 'react-signature-canvas';
 import LiveInvoicePreview from './LiveInvoicePreview';
 import trimCanvas from '../utils/trimCanvas';
@@ -25,7 +25,7 @@ const Step3CustomizeShare = ({ data, updateData, handleSubmit }) => {
   };
 
   return (
-    <Box sx={{ p: 3, borderRadius: 2, boxShadow: 2 }}>
+    <Box sx={{ p: 3, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 2, maxWidth: 600, margin: '0 auto' }}>
       <Typography variant="h6" gutterBottom>
         Customize & Finalize
       </Typography>
@@ -39,6 +39,9 @@ const Step3CustomizeShare = ({ data, updateData, handleSubmit }) => {
         onChange={handleChange}
         sx={{ mt: 2 }}
         fullWidth
+        InputProps={{
+          inputProps: { min: 0, max: 100 } // Limit discount percentage
+        }}
       />
 
       {/* Signature Input */}
@@ -50,7 +53,7 @@ const Step3CustomizeShare = ({ data, updateData, handleSubmit }) => {
           penColor="black"
           canvasProps={{ width: 500, height: 150, className: 'sigCanvas' }}
           ref={sigCanvas}
-          style={{ border: '1px dashed #ccc', borderRadius: '4px' }} // Adding border for better visibility
+          style={{ border: '1px dashed #ccc', borderRadius: '4px' }}
         />
         <Box sx={{ mt: 1, display: 'flex', gap: 2 }}>
           <Button variant="contained" onClick={saveSignature}>
