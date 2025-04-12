@@ -185,21 +185,6 @@ Reference link for `MAIL_PASSWORD`: [Sign in with App Passwords](https://support
 
 ---
 
-## Firebase for Email Auth
-
-Create a Firebase project at https://console.firebase.google.com
-
-Enable Email/Password Authentication under "Authentication > Sign-in method"
-
-Install Firebase SDK:
-'''bash
-npm install firebase
-'''
-
-
-
----
-
 ## Project Structure
 
 ```

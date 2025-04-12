@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Container, Typography, TextField, Button,
-  List, ListItem, ListItemText
+  List, ListItem, ListItemText, Box
 } from '@mui/material';
 
 const Clients = () => {
@@ -40,44 +40,93 @@ const Clients = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Add Client</Typography>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '20px' }}>
-        <TextField label="Name" name="name" value={formData.name} onChange={handleChange} required />
-        <TextField label="Email" name="email" value={formData.email} onChange={handleChange} />
-        <TextField label="Address" name="address" value={formData.address} onChange={handleChange} />
-        <TextField label="Phone" name="phone" value={formData.phone} onChange={handleChange} />
-        <Button type="submit" variant="contained">Add Client</Button>
-      </form>
-      {editingClient && (
-      <form onSubmit={async (e) => {
-        e.preventDefault();
-        await axios.put(`/api/clients/${editingClient.id}`, editingClient);
-        setEditingClient(null);
-        fetchClients();
-      }} style={{ marginTop: 20 }}>
-        <Typography variant="h6">Edit Client</Typography>
-        <TextField label="Name" value={editingClient.name} onChange={(e) => setEditingClient({ ...editingClient, name: e.target.value })} />
-        <TextField label="Email" value={editingClient.email} onChange={(e) => setEditingClient({ ...editingClient, email: e.target.value })} />
-        <TextField label="Phone" value={editingClient.phone} onChange={(e) => setEditingClient({ ...editingClient, phone: e.target.value })} />
-        <TextField label="Address" value={editingClient.address} onChange={(e) => setEditingClient({ ...editingClient, address: e.target.value })} />
-        <Button type="submit" variant="contained" sx={{ mt: 1 }}>Save Changes</Button>
-      </form>
-    )}
+      <Box sx={{ p: 3, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 2, maxWidth: 400, margin: '0 auto' }}>
+        <Typography variant="h4" gutterBottom textAlign="center">Add Client</Typography>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+          <TextField 
+            label="Name" 
+            name="name" 
+            value={formData.name} 
+            onChange={handleChange} 
+            required 
+            sx={{ mb: 2, width: '300px' }} // Set width
+          />
+          <TextField 
+            label="Email" 
+            name="email" 
+            value={formData.email} 
+            onChange={handleChange} 
+            sx={{ mb: 2, width: '300px' }} // Set width
+          />
+          <TextField 
+            label="Address" 
+            name="address" 
+            value={formData.address} 
+            onChange={handleChange} 
+            sx={{ mb: 2, width: '300px' }} // Set width
+          />
+          <TextField 
+            label="Phone" 
+            name="phone" 
+            value={formData.phone} 
+            onChange={handleChange} 
+            sx={{ mb: 2, width: '300px' }} // Set width
+          />
+          <Button type="submit" variant="contained">Add Client</Button>
+        </form>
+        
+        {editingClient && (
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            await axios.put(`/api/clients/${editingClient.id}`, editingClient);
+            setEditingClient(null);
+            fetchClients();
+          }} style={{ marginTop: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography variant="h6">Edit Client</Typography>
+            <TextField 
+              label="Name" 
+              value={editingClient.name} 
+              onChange={(e) => setEditingClient({ ...editingClient, name: e.target.value })} 
+              sx={{ mb: 2, width: '300px' }} // Set width
+            />
+            <TextField 
+              label="Email" 
+              value={editingClient.email} 
+              onChange={(e) => setEditingClient({ ...editingClient, email: e.target.value })} 
+              sx={{ mb: 2, width: '300px' }} // Set width
+            />
+            <TextField 
+              label="Phone" 
+              value={editingClient.phone} 
+              onChange={(e) => setEditingClient({ ...editingClient, phone: e.target.value })} 
+              sx={{ mb: 2, width: '300px' }} // Set width
+            />
+            <TextField 
+              label="Address" 
+              value={editingClient.address} 
+              onChange={(e) => setEditingClient({ ...editingClient, address: e.target.value })} 
+              sx={{ mb: 2, width: '300px' }} // Set width
+            />
+            <Button type="submit" variant="contained" sx={{ mt: 1 }}>Save Changes</Button>
+          </form>
+        )}
+      </Box>
 
-      <Typography variant="h6">Client List</Typography>
-      <List>
-        {clients.map((client) => (
-          <ListItem key={client.id} secondaryAction={
-            <>
-              <Button size="small" onClick={() => setEditingClient(client)}>Edit</Button>
-              <Button size="small" color="error" onClick={() => handleDelete(client.id)}>Delete</Button>
-            </>
+      <Box sx={{ mt: 4, p: 2, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 2, maxWidth: 600, margin: '20px auto' }}>
+        <Typography variant="h6" sx={{ textAlign: 'center' }}>Client List</Typography>
+        <List>
+          {clients.map((client) => (
+            <ListItem key={client.id} secondaryAction={
+              <>
+                <Button size="small" onClick={() => setEditingClient(client)}>Edit</Button>
+                <Button size="small" color="error" onClick={() => handleDelete(client.id)}>Delete</Button>
+              </>
             }>
-            <ListItemText primary={client.name} secondary={`${client.email}, ${client.phone}`} />
-          </ListItem>
-
-        ))}
-      </List>
+              <ListItemText primary={client.name} secondary={`${client.email}, ${client.phone}`} />
+            </ListItem>
+          ))}
+        </List>
+      </Box>
     </Container>
   );
 };

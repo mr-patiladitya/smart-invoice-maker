@@ -36,7 +36,7 @@ const Home = () => {
               color: 'primary.main',
             }}
           >
-            <StarIcon sx={{ fontSize: 40, animation: 'pulse 2s infinite' }} />
+
             <Typography variant="h4" fontWeight="bold" ml={1}>
               Smart Invoice Maker
             </Typography>
