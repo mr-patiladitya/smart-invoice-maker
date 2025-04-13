@@ -1,4 +1,3 @@
-# utils/pdf_generator.py
 import pdfkit
 from flask import render_template
 from models import Invoice, Client

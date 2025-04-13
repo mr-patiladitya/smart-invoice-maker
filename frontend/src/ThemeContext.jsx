@@ -1,4 +1,3 @@
-// src/ThemeContext.jsx
 import React, { createContext, useState, useMemo } from 'react';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
@@ -8,7 +7,7 @@ const CustomThemeProvider = ({ children }) => {
   const [mode, setMode] = useState('light');
 
   const colorMode = useMemo(() => ({
-    mode, // expose current mode too
+    mode, 
     toggleColorMode: () => {
       setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
     }

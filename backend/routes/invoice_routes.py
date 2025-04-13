@@ -1,4 +1,4 @@
-import uuid  # at the top if not already
+import uuid  
 from flask import request, jsonify
 from extensions import mail
 from flask_mail import Message
@@ -62,11 +62,9 @@ def get_clients():
 def add_invoice():
     data = request.json
 
-    # Auto-generate invoice number if not provided or duplicate
     generated_invoice_number = data.get(
         'invoice_number') or f"INV-{uuid.uuid4().hex[:6].upper()}"
 
-    # Ensure uniqueness
     existing = Invoice.query.filter_by(
         invoice_number=generated_invoice_number).first()
     if existing:
@@ -198,11 +196,11 @@ def delete_client(client_id):
 @invoice_bp.route('/send-invoice-email', methods=['POST', 'OPTIONS'])
 def send_invoice_email():
     if request.method == 'OPTIONS':
-        return '', 200  # Handle CORS preflight
+        return '', 200  
 
     try:
         data = request.json
-        print("Received email send request:", data)  # ✅ DEBUG PRINT
+        print("Received email send request:", data)  
 
         invoice_id = data.get('invoice_id')
         if not invoice_id:
@@ -216,7 +214,7 @@ def send_invoice_email():
 
         msg = Message(
             subject=f"Invoice #{invoice.invoice_number}",
-            sender=os.getenv('MAIL_USERNAME'),  # ✅ explicitly set
+            sender=os.getenv('MAIL_USERNAME'),  
             recipients=[invoice.client.email],
             body=f"Dear {invoice.client.name},\n\nPlease find your invoice attached.\n\nThanks!"
         )
@@ -240,7 +238,7 @@ def create_razorpay_order(invoice_id):
     discount = total_amount * (invoice.discount or 0) / 100
     grand_total = round(total_amount + gst - discount, 2)
 
-    amount_paise = int(grand_total * 100)  # Razorpay uses paise
+    amount_paise = int(grand_total * 100)  
 
     order = razorpay_client.order.create({
         "amount": amount_paise,
@@ -274,7 +272,6 @@ def create_payment_link(invoice_id):
     invoice = Invoice.query.get_or_404(invoice_id)
     client = invoice.client
 
-    # Calculate total with GST and discount
     total_amount = sum(item.total for item in invoice.items)
     gst = total_amount * 0.12
     discount = total_amount * (invoice.discount or 0) / 100
@@ -316,7 +313,6 @@ def razorpay_webhook():
     payload = request.data
     received_signature = request.headers.get('X-Razorpay-Signature')
 
-    # Verify signature
     generated_signature = hmac.new(
         webhook_secret.encode(), payload, hashlib.sha256
     ).hexdigest()
@@ -336,7 +332,6 @@ def razorpay_webhook():
     if not invoice:
         return jsonify({'error': 'Invoice not found'}), 404
 
-    # ✅ Handle Events
     if event == "payment_link.paid":
         invoice.status = "Paid"
     elif event in ["payment_link.failed", "payment_link.expired"]:

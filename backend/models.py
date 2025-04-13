@@ -1,4 +1,3 @@
-# models.py
 from extensions import db
 from datetime import datetime
 
@@ -38,8 +37,7 @@ class Invoice(db.Model):
     logo_url = db.Column(db.String(255))
     upi_id = db.Column(db.String(100))
 
-    # ✅ NEW FIELD for drawn signature
-    signature = db.Column(db.Text)  # base64 image string
+    signature = db.Column(db.Text) 
 
     client_id = db.Column(db.Integer, db.ForeignKey(
         'clients.id'), nullable=False)

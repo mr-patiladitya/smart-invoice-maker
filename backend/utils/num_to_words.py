@@ -1,4 +1,3 @@
-# utils/num_to_words.py
 def num_to_indian_words(number):
     import inflect
     p = inflect.engine()
