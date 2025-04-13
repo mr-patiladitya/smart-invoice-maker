@@ -180,6 +180,8 @@ RAZORPAY_KEY_SECRET="KEY_SECRET"    # Provided after KYC
 RAZORPAY_WEBHOOK_SECRET="WEBHOOK_SECRET"  # Must match the webhook
 ```
 
+> ⚠️ **Important:** Restart the backend server every time you make changes to the `.env` file.
+
 Reference link for `MAIL_PASSWORD`: [Sign in with App Passwords](https://support.google.com/accounts/answer/185833?hl=en)
 
 ---
@@ -250,10 +252,68 @@ smart-invoice-maker/
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
-> Coming Soon!  
-> (You can include screenshots of the dashboard, invoice creation screen, preview, etc.)
+Here are some screenshots of the Smart Invoice Maker:
+
+### 🔧 Setup & Configuration
+
+- **Ngrok Tunnel**  
+  ![Ngrok](screenshots/ngrok.png)
+- **API Keys Input**  
+  ![API Keys](screenshots/api_keys.png)
+- **Webhook Configuration**  
+  ![Webhook](screenshots/Webhook.png)
+
+### 🌗 Homepage (Themes)
+
+- **Light Mode**  
+  ![Homepage Light](screenshots/HomePageLight.png)
+- **Dark Mode**  
+  ![Homepage Dark](screenshots/HomePageDark.png)
+
+### 👥 Client Management
+
+- **Add New Client**  
+  ![Add Client](screenshots/AddClient.png)
+
+### 🧾 Invoice Creation Flow
+
+- **Invoice Details**  
+  ![Invoice Details](screenshots/InvoiceDetails.png)
+- **UPI Field Example**  
+  ![UPI](screenshots/Upi.png)
+- **Preview Before Save**  
+  ![Preview](screenshots/InvoicePreview.png)
+- **Invoice Creation Success**  
+  ![Success](screenshots/InvoiceCeretionSuccess.png)
+
+### 📋 Invoice Lists
+
+- **Unpaid Invoices**  
+  ![Unpaid](screenshots/InvoiceListUnpaid.png)
+- **Paid Invoices**  
+  ![Paid](screenshots/InvoiceListPaid.png)
+
+### 💳 Payment Integration (Razorpay)
+
+- **Payment Step 1**  
+  ![Razorpay 1](screenshots/RozerPay1.png)
+- **Payment Step 2**  
+  ![Razorpay 2](screenshots/RozerPay2.png)
+- **Payment Step 3**  
+  ![Razorpay 3](screenshots/RozerPay3.png)
+- **Payment Step 4**  
+  ![Razorpay 4](screenshots/RozerPay4.png)
+- **Payment Step 5**  
+  ![Razorpay 5](screenshots/RozerPay5.png)
+- **Payment Step 6**  
+  ![Razorpay 6](screenshots/RozerPay6.png)
+
+### 📄 PDF Export
+
+- **Invoice PDF (INV001)**  
+  ![PDF](screenshots/INV001_PDF.png)
 
 ---
 
