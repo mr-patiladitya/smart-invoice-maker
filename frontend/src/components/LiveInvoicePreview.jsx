@@ -1,4 +1,3 @@
-// src/components/LiveInvoicePreview.jsx
 import React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 

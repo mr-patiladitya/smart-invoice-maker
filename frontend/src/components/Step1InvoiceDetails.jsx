@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, MenuItem, Button, Typography, Box } from '@mui/material';
 import axios from 'axios';
-import FileUploader from './FileUploader'; // ✅ Import uploader
 
 const Step1InvoiceDetails = ({ data, updateData }) => {
   const [clients, setClients] = useState([]);
@@ -47,18 +46,39 @@ const Step1InvoiceDetails = ({ data, updateData }) => {
       <Typography variant="h6">Invoice Items</Typography>
       {data.items.map((item, index) => (
         <Box key={index} sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 2, border: '1px solid #ddd', borderRadius: 2, p: 2 }}>
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-            <TextField label="Description" name="description" value={item.description} onChange={(e) => handleItemChange(index, e)} required />
-            <TextField type="number" label="Qty" name="quantity" value={item.quantity} onChange={(e) => handleItemChange(index, e)} required />
-            <TextField type="number" label="Unit Price" name="unit_price" value={item.unit_price} onChange={(e) => handleItemChange(index, e)} required />
-          </Box>
+          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+            <TextField
+              label="Description"
+              name="description"
+              value={item.description}
+              onChange={(e) => handleItemChange(index, e)}
+              required
+            />
+            <TextField
+              type="number"
+              label="Qty"
+              name="quantity"
+              value={item.quantity}
+              onChange={(e) => handleItemChange(index, e)}
+              required
+            />
+            <TextField
+              type="number"
+              label="Unit Price"
+              name="unit_price"
+              value={item.unit_price}
+              onChange={(e) => handleItemChange(index, e)}
+              required
+            />
 
-          {data.items.length > 1 && (
-            <Button variant="outlined" color="error" onClick={() => removeItem(index)} sx={{ mt: 1 }}>
-              Remove Item
-            </Button>
-          )}
+            {data.items.length > 1 && (
+              <Button variant="outlined" color="error" onClick={() => removeItem(index)}>
+                Remove Item
+              </Button>
+            )}
+          </Box>
         </Box>
+
       ))}
 
       <Button onClick={addItem} variant="outlined" sx={{ mt: 2 }}>+ Add Item</Button>

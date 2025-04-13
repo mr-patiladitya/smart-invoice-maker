@@ -1,4 +1,3 @@
-// src/components/FileUploader.jsx
 import React from 'react';
 import { Button } from '@mui/material';
 import axios from 'axios';

@@ -1,23 +1,44 @@
-// src/pages/Home.jsx
 import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography, Box, Button, Paper } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <Box
         sx={{
-          height: '100vh', // Full viewport height
+          height: '100vh',
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center', // Vertical center
-          alignItems: 'center',     // Horizontal center
-          textAlign: 'center'
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
-        <Typography variant="h3" gutterBottom>
-          Welcome to Smart Invoice Maker
-        </Typography>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 4,
+            borderRadius: 3,
+            textAlign: 'center',
+            maxWidth: 500,
+            width: '100%'
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            Smart Invoice Maker
+          </Typography>
+          <Typography variant="body1" color="text.secondary" gutterBottom>
+            Create sleek, professional invoices in seconds — no hassle, no clutter.
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{ mt: 3, px: 4, py: 1.5 }}
+            onClick={() => navigate('/create-invoice')}
+          >
+            Create Your Invoice
+          </Button>
+        </Paper>
       </Box>
     </Container>
   );

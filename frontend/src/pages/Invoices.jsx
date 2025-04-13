@@ -1,4 +1,3 @@
-// src/pages/Invoices.jsx
 import React, { useEffect, useState } from 'react';
 import {
   Container, Typography, CircularProgress, Table, TableBody, TableCell,
@@ -68,7 +67,7 @@ const handlePayNow = async (invoiceId) => {
   try {
     const res = await axios.post(`/api/razorpay/payment-link/${invoiceId}`);
     const link = res.data.link;
-    window.open(link, '_blank'); // ✅ Open Razorpay link
+    window.open(link, '_blank'); 
   } catch (err) {
     console.error(err);
     alert("❌ Failed to create payment link");
